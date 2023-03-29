@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-slate-800
+}
+
+.sidebar .active {
+  @apply text-teal-500 font-bold md:border-r-2 md:border-r-teal-500 rounded-none hover:bg-transparent
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
