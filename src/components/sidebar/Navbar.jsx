@@ -64,7 +64,7 @@ const Navbar = () => {
         <div>
           {/* logo */}
           <div className="logo mb-8 w-full md:pl-8 lg:pl-12">
-            <h1 className="font-bold text-teal-500 text-lg md:text-xl text-center md:text-start">Logo.</h1>
+            <h1 className="font-bold text-violet-500 text-lg md:text-xl text-center md:text-start">Logo.</h1>
           </div>
 
           {/* user */}
@@ -118,7 +118,7 @@ const Navbar = () => {
 
                 <button
                   onClick={moreToggleHendler}
-                  className="hover:text-teal-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300"
+                  className="hover:text-violet-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300"
                 >
                   <span className="text-2xl">
                     <BsThreeDots />
@@ -136,7 +136,7 @@ const Navbar = () => {
         <div className="w-full lg:pl-4 md:pl-2 flex flex-col justify-between items-center md:items-start">
           <button
             onClick={signOutHendler}
-            className="hover:text-teal-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300">
+            className="hover:text-violet-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300">
               <BsPower fontSize={24} />
               <span className="hidden md:block">Logout</span>
           </button>

@@ -41,7 +41,7 @@ const Suggestion = () => {
         </div>
       </div>
 
-      <Link to='connect' className="text-teal-500 py-4 px-3 w-full flex rounded-lg hover:bg-teal-100 transition duration-300 mt-4">
+      <Link to='connect' className="text-violet-500 py-4 px-3 w-full flex rounded-lg hover:bg-violet-100 transition duration-300 mt-4">
         Show More
       </Link>
     </div>

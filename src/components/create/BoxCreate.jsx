@@ -18,7 +18,7 @@ const BoxCreate = () => {
           <div className="w-full">
             <textarea name="post" id="post" className="resize-none outline-none border-none w-full placeholder:text-xl" placeholder="What's happening?"></textarea>
 
-            <div className="flex justify-between items-center text-teal-500 text-lg md:text-xl mt-3">
+            <div className="flex justify-between items-center text-violet-500 text-lg md:text-xl mt-3">
               <div className="flex gap-4 md:gap-6">
                 <div className="cursor-pointer relative">
                   <RiGalleryFill />

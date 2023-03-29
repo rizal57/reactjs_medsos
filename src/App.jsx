@@ -36,6 +36,11 @@ const App = () => {
           <Login />
         </Guest>
       } />
+      <Route path="/register" element={
+        <Guest>
+          <h1>Register</h1>
+        </Guest>
+      } />
       <Route path="*" element={<h1>Page not found</h1>} />
     </Routes>
   )
