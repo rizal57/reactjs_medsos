@@ -1,19 +1,19 @@
-import { FcGoogle } from "react-icons/fc";
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../config/firebaseConfig";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { FormControl, Label } from "../input";
-import { ButtonLogin } from "../button";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { useContext } from "react"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { FcGoogle } from "react-icons/fc"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { auth } from "../../config/firebaseConfig"
+import { AuthContext } from "../../context/AuthContext"
+import { ButtonLogin } from "../button"
+import { FormControl, Label } from "../input"
 
-const Login = () => {
+const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const [loginError, setLoginError] = useState('')
+  const [registerError, setRegisterError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const { dispatch } = useContext(AuthContext)
@@ -28,29 +28,29 @@ const Login = () => {
         dispatch({type: 'LOGIN', payload: user})
         navigate('/')
       }).catch(error => {
-        setLoginError("Login failed")
+        setRegisterError("Login failed")
       })
   }
 
   const onSubmit = (data) => {
     setIsLoading(true)
-    signInWithEmailAndPassword(auth, data.email, data.password)
+    createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user
         dispatch({type: 'LOGIN', payload: user})
         navigate('/')
         setIsLoading(false)
       }).catch((error) => {
-        setLoginError('Wrong email or password!')
+        setRegisterError('Email or password alredy!')
       })
   }
 
   return (
     <>
-      {loginError && <span className="text-red-500 mb-3 text-center">{loginError}</span>}
+      {registerError && <span className="text-red-500 mb-3 text-center">{registerError}</span>}
       <div className="mb-4 max-w-[300px]">
         <div className="mb-4">
-          <h1 className="text-2xl font-semibold text-violet-500 text-center">Login</h1>
+          <h1 className="text-2xl font-semibold text-violet-500 text-center">Register</h1>
         </div>
         <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           {/* email */}
@@ -86,7 +86,7 @@ const Login = () => {
           </FormControl>
 
           <div className="mt-5">
-            <ButtonLogin type='submit' text={isLoading ? 'Loading...' : 'Login'} variant='bg-violet-500 hover:bg-violet-600 text-white' />
+            <ButtonLogin type='submit' text={isLoading ? 'Loading...' : 'Register'} variant='bg-violet-500 hover:bg-violet-600 text-white' />
           </div>
         </form>
       </div>
@@ -103,11 +103,11 @@ const Login = () => {
       </ButtonLogin>
 
       <div className="flex justify-center mt-5">
-        <span className="text-slate-600 pr-2">Don't have an account?</span>
-        <Link to='/user/register' className="text-violet-500 font-semibold">Register</Link>
+        <span className="text-slate-600 pr-2">Already have an account?</span>
+        <Link to='/user/login' className="text-violet-500 font-semibold">Login</Link>
       </div>
     </>
   )
 }
 
-export default Login
+export default Register

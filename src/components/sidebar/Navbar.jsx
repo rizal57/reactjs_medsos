@@ -11,6 +11,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import {NoPoto} from '../../assets'
 
 const Navbar = () => {
   const [moreToggle, setMoreToggle] = useState(false)
@@ -72,14 +73,14 @@ const Navbar = () => {
             <div className="mb-4 md:px-2 md:flex md:gap-3 md:flex-col md:items-center md:w-full">
               <Link to='/profile'>
                 <img
-                  src={authUser?.photoURL}
+                  src={authUser?.photoURL ? authUser?.photoURL : NoPoto}
                   alt="user image"
                   className="w-10 h-10 md:w-14 md:h-14 rounded-full flex-shrink-0"
                 />
               </Link>
               <div className="hidden text-center md:flex md:flex-col">
-                <Link to='/profile' className="font-semibold">{authUser?.displayName}</Link>
-                <Link to='/profile' className="text-sm text-slate-500">@{authUser?.displayName.replace(/ /g,"_").slice(0,9)}</Link>
+                <Link to='/profile' className="font-semibold">{authUser?.displayName ? authUser?.displayName : authUser?.email}</Link>
+                <Link to='/profile' className="text-sm text-slate-500">@{authUser?.displayName ? authUser?.displayName.replace(/ /g,"_").slice(0,9) : authUser?.email.replace(/ /g,"_").slice(0,9)}</Link>
               </div>
             </div>
 

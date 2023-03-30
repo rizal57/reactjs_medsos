@@ -5,6 +5,7 @@ import { GoLocation } from "react-icons/go";
 import { ButtonPrimary } from "../button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import {NoPoto} from '../../assets'
 
 const BoxCreate = () => {
   const { authUser } = useContext(AuthContext)
@@ -13,7 +14,7 @@ const BoxCreate = () => {
     <div className="w-full px-4 mb-4">
       <div className="p-4 rounded-lg bg-white shadow-md">
         <div className="flex gap-3">
-          <img src={authUser?.photoURL} alt="User Image" className="w-10 h-10 rounded-full" />
+          <img src={authUser?.photoURL ? authUser?.photoURL : NoPoto} alt="User Image" className="w-10 h-10 rounded-full" />
 
           <div className="w-full">
             <textarea name="post" id="post" className="resize-none outline-none border-none w-full placeholder:text-xl" placeholder="What's happening?"></textarea>

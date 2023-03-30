@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./components";
+import { Login, Register } from "./components";
 import { AuthContext } from "./context/AuthContext";
+import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
 import { Home } from "./pages";
 
@@ -10,11 +11,11 @@ const App = () => {
   const { authUser } = useContext(AuthContext)
 
   const Auth = ({children}) => {
-    return authUser !== null ? children : <Navigate to='/login' />
+    return authUser ? children : <Navigate to='/user/login' />
   }
 
   const Guest = ({children}) => {
-    return authUser == null ? children : <Navigate to={-1} />
+    return !authUser ? children : <Navigate to={-1} />
   }
 
   return (
@@ -31,16 +32,18 @@ const App = () => {
           </Auth>
         } />
       </Route>
-      <Route path="/login" element={
-        <Guest>
-          <Login />
-        </Guest>
-      } />
-      <Route path="/register" element={
-        <Guest>
-          <h1>Register</h1>
-        </Guest>
-      } />
+      <Route path="/user" element={<AuthLayout />}>
+        <Route path="login" element={
+          <Guest>
+            <Login />
+          </Guest>
+        } />
+        <Route path="register" element={
+          <Guest>
+            <Register />
+          </Guest>
+        } />
+      </Route>
       <Route path="*" element={<h1>Page not found</h1>} />
     </Routes>
   )
