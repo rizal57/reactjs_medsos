@@ -4,8 +4,8 @@ import { auth } from "../../config/firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { FormControl, Label } from "../input";
-import { ButtonLogin } from "../button";
+import { FormControl, Label } from "../../components/input";
+import { ButtonLogin } from "../../components/button";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -42,6 +42,7 @@ const Login = () => {
         setIsLoading(false)
       }).catch((error) => {
         setLoginError('Wrong email or password!')
+        setIsLoading(false)
       })
   }
 

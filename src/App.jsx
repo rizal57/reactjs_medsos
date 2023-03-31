@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import { Login, Register } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
-import { Home } from "./pages";
+import { Home, Login, Register } from "./pages";
 
 const App = () => {
   const { authUser } = useContext(AuthContext)

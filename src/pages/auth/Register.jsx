@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { auth } from "../../config/firebaseConfig"
+import { auth, db } from "../../config/firebaseConfig"
 import { AuthContext } from "../../context/AuthContext"
-import { ButtonLogin } from "../button"
-import { FormControl, Label } from "../input"
+import { ButtonLogin } from "../../components/button"
+import { FormControl, Label } from "../../components/input"
+import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore"
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -38,10 +39,20 @@ const Register = () => {
       .then((userCredential) => {
         const user = userCredential.user
         dispatch({type: 'LOGIN', payload: user})
+        // firestore user
+        const userRef = doc(collection(db, "users"));
+        setDoc(userRef, {
+          uid: user.uid,
+          name: data.name,
+          username: data.username,
+          photoURL: '',
+          timeStamp: serverTimestamp()
+        });
         navigate('/')
         setIsLoading(false)
       }).catch((error) => {
         setRegisterError('Email or password alredy!')
+        setIsLoading(false)
       })
   }
 
@@ -53,6 +64,36 @@ const Register = () => {
           <h1 className="text-2xl font-semibold text-violet-500 text-center">Register</h1>
         </div>
         <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          {/* name */}
+          <FormControl>
+            <Label htmlFor='name' text='Name'/>
+            <input
+              className="py-2 px-4 shadow-md rounded-md border-none outline-none focus:ring-2 focus:ring-violet-500 focus:border focus:border-slate-300 text-slate-800 transition duration-300 placeholder:text-base placeholder:text-slate-400"
+              type='text'
+              id='name'
+              {...register('name', {
+                required: { value: true, message: 'Name is required' }
+              })}
+              placeholder='Your name here...'
+            />
+            { errors.name && <small className="text-red-500">{errors?.name?.message}</small> }
+          </FormControl>
+
+          {/* username */}
+          <FormControl>
+            <Label htmlFor='username' text='Username'/>
+            <input
+              className="py-2 px-4 shadow-md rounded-md border-none outline-none focus:ring-2 focus:ring-violet-500 focus:border focus:border-slate-300 text-slate-800 transition duration-300 placeholder:text-base placeholder:text-slate-400"
+              type='text'
+              id='username'
+              {...register('username', {
+                required: { value: true, message: 'Username is required' }
+              })}
+              placeholder='Your username here...'
+            />
+            { errors.username && <small className="text-red-500">{errors?.username?.message}</small> }
+          </FormControl>
+
           {/* email */}
           <FormControl>
             <Label htmlFor='email' text='Email'/>
