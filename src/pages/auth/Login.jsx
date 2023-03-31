@@ -13,7 +13,6 @@ import { useState } from "react";
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const [loginError, setLoginError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const { dispatch } = useContext(AuthContext)
@@ -28,7 +27,7 @@ const Login = () => {
         dispatch({type: 'LOGIN', payload: user})
         navigate('/')
       }).catch(error => {
-        setLoginError("Login failed")
+        toast.error('Login failed')
       })
   }
 
@@ -41,14 +40,13 @@ const Login = () => {
         navigate('/')
         setIsLoading(false)
       }).catch((error) => {
-        setLoginError('Wrong email or password!')
+        toast.error('Wrong email or password!')
         setIsLoading(false)
       })
   }
 
   return (
     <>
-      {loginError && <span className="text-red-500 mb-3 text-center">{loginError}</span>}
       <div className="mb-4 max-w-[300px]">
         <div className="mb-4">
           <h1 className="text-2xl font-semibold text-violet-500 text-center">Login</h1>

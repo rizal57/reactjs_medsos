@@ -1,9 +1,14 @@
+import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 import { Navbar, Rightside } from '../components'
 
 const MainLayout = () => {
   return (
     <div className='flex'>
+      <Toaster
+        position='top-center'
+      />
+
       <Navbar />
 
       <main className='ml-[72px] md:ml-[302px] lg:ml-[352px] flex-1'>
