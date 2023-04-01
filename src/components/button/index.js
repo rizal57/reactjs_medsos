@@ -1,3 +1,4 @@
 import ButtonPrimary from "./ButtonPrimary";
+import ButtonLogin from "./ButtonLogin";
 
-export {ButtonPrimary}
+export {ButtonPrimary, ButtonLogin}

@@ -11,6 +11,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import {NoPoto} from '../../assets'
 
 const Navbar = () => {
   const [moreToggle, setMoreToggle] = useState(false)
@@ -64,7 +65,7 @@ const Navbar = () => {
         <div>
           {/* logo */}
           <div className="logo mb-8 w-full md:pl-8 lg:pl-12">
-            <h1 className="font-bold text-teal-500 text-lg md:text-xl text-center md:text-start">Logo.</h1>
+            <h1 className="font-bold text-violet-500 text-lg md:text-xl text-center md:text-start">Logo.</h1>
           </div>
 
           {/* user */}
@@ -72,14 +73,14 @@ const Navbar = () => {
             <div className="mb-4 md:px-2 md:flex md:gap-3 md:flex-col md:items-center md:w-full">
               <Link to='/profile'>
                 <img
-                  src={authUser?.photoURL}
+                  src={authUser?.photoURL ? authUser?.photoURL : NoPoto}
                   alt="user image"
                   className="w-10 h-10 md:w-14 md:h-14 rounded-full flex-shrink-0"
                 />
               </Link>
               <div className="hidden text-center md:flex md:flex-col">
-                <Link to='/profile' className="font-semibold">{authUser?.displayName}</Link>
-                <Link to='/profile' className="text-sm text-slate-500">@{authUser?.displayName.replace(/ /g,"_").slice(0,9)}</Link>
+                <Link to='/profile' className="font-semibold">{authUser?.displayName ? authUser?.displayName : authUser?.email}</Link>
+                <Link to='/profile' className="text-sm text-slate-500">@{authUser?.displayName ? authUser?.displayName.replace(/ /g,"_").slice(0,9) : authUser?.email.replace(/ /g,"_").slice(0,9)}</Link>
               </div>
             </div>
 
@@ -118,7 +119,7 @@ const Navbar = () => {
 
                 <button
                   onClick={moreToggleHendler}
-                  className="hover:text-teal-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300"
+                  className="hover:text-violet-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300"
                 >
                   <span className="text-2xl">
                     <BsThreeDots />
@@ -136,7 +137,7 @@ const Navbar = () => {
         <div className="w-full lg:pl-4 md:pl-2 flex flex-col justify-between items-center md:items-start">
           <button
             onClick={signOutHendler}
-            className="hover:text-teal-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300">
+            className="hover:text-violet-500 h-12 w-12 md:object-contain md:w-full md:h-full md:py-2 md:px-4 md:mb-2 inline-flex items-center gap-3 md:justify-start justify-center transition duration-300">
               <BsPower fontSize={24} />
               <span className="hidden md:block">Logout</span>
           </button>
