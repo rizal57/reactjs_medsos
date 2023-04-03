@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
-import { Home, Login, Register } from "./pages";
+import { Home, Login, Profile, Register } from "./pages";
 
 const App = () => {
   const { authUser } = useContext(AuthContext)
@@ -25,9 +25,9 @@ const App = () => {
             <Home />
           </Auth>
         } />
-        <Route path="favorite" element={
+        <Route path="profile" element={
           <Auth>
-            <h1>Favorite</h1>
+            <Profile />
           </Auth>
         } />
       </Route>
