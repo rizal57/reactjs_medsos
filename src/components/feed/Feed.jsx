@@ -20,7 +20,7 @@ const Feed = () => {
             </div>
             &middot;
             <div className="ml-3">
-              <span className="text-slate-500 text-sm">just a moment</span>
+              <span className="text-slate-500 text-sm">just now</span>
             </div>
           </div>
 
